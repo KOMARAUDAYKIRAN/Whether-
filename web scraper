@@ -1,0 +1,24 @@
+import requests
+from bs4 import BeautifulSoup
+
+def scrape_headlines(url):
+    # Send a GET request to the URL
+    response = requests.get(url)
+    
+    # Check if the request was successful
+    if response.status_code == 200:
+        # Parse the HTML content of the page
+        soup = BeautifulSoup(response.text, 'html.parser')
+        
+        # Find all elements with the specified class or tag containing the headlines
+        headlines = soup.find_all('h2', class_='headline')  # Adjust this according to the website structure
+        
+        # Extract and print the headlines
+        for headline in headlines:
+            print(headline.text.strip())
+    else:
+        print("Failed to retrieve data from the website.")
+
+# Example usage:
+url = 'https://example.com/news'
+scrape_headlines(url)
