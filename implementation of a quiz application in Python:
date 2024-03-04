@@ -1,0 +1,35 @@
+class Quiz:
+    def __init__(self, questions):
+        self.questions = questions
+        self.score = 0
+
+    def take_quiz(self):
+        for question in self.questions:
+            print(question)
+            answer = input("Your answer: ")
+            if answer.lower() == self.questions[question].lower():
+                print("Correct!")
+                self.score += 1
+            else:
+                print("Incorrect!")
+            print()
+
+    def display_score(self):
+        total_questions = len(self.questions)
+        print("Your score: {}/{}".format(self.score, total_questions))
+
+# Example questions and answers (you can add more):
+questions = {
+    "What is the capital of France?": "Paris",
+    "Who wrote 'Romeo and Juliet'?": "William Shakespeare",
+    "What is the chemical symbol for gold?": "Au"
+}
+
+# Create quiz object
+quiz = Quiz(questions)
+
+# Take the quiz
+quiz.take_quiz()
+
+# Display score
+quiz.display_score()
